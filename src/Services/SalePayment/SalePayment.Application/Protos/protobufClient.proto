@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+service GetProductInfo{
+	rpc GetProductById(ProductIdRequest) returns (ProductReply);
+}
+message ProductIdRequest{
+	repeated int32 id = 1;
+}
+message ProductGrpc{
+	int32 ProductId = 1;
+	string ProductName = 2;
+	string CompanyName =3;
+	string CategoryName =4;
+	string QuantityPerUnit=5;
+	int32 UnitsInStock = 6;
+}
+
+message ProductReply{
+	repeated ProductGrpc productgrpc = 1;
+}

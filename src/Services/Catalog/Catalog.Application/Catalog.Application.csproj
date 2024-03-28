@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="gRPC_Service\**" />
+    <EmbeddedResource Remove="gRPC_Service\**" />
+    <None Remove="gRPC_Service\**" />
+  </ItemGroup>
+
+	<ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.61.0" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <Folder Include="Commands\" />
+  </ItemGroup>
+	<ItemGroup>
+		<Protobuf Include="Protos\protobuf.proto" GrpcServices="Server" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+    <ProjectReference Include="..\Catalog.Domain\Catalog.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

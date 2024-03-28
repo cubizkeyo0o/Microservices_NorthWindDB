@@ -1,0 +1,8 @@
+Data Source=desktop-tavv7fi;Initial Catalog=Northwind;User ID=sa;Password=***********;Encrypt=True;Trust Server Certificate=True
+
+E:\c#_learning\microservices\ApiGateWay\YarpReverseProxy_Demo\src\Services\Catalog\Catalog.Domain\Entities
+
+Scaffold-DbContext "Data Source=desktop-tavv7fi;Initial Catalog=Northwind;User ID=sa;Password=longNam2403#;Encrypt=True;Trust Server Certificate=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+connecstring1 = Server=.\desktop-tavv7fi;Database=Northwind;Trusted_Connection=true;
+connecstring2 = Data Source=desktop-tavv7fi;Initial Catalog=Northwind;User ID=sa;Password=***********;Encrypt=True;Trust Server Certificate=True

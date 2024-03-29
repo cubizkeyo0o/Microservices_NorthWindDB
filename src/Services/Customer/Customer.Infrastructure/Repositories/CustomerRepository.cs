@@ -23,9 +23,14 @@ namespace Customer.Infrastructure.Repositories
             return customer;
         }
 
-        public Task<List<CustomerModel>> GetCustomers()
+        public async Task<List<CustomerModel>> GetAllCustomers()
         {
-            throw new NotImplementedException();
+            var listCustomers =await _context.Customers.ToListAsync();
+            if(listCustomers == null)
+            {
+                throw new NotImplementedException();
+            }
+            return listCustomers;
         }
 
         public async Task<string> GetEmailCustomer(string id)

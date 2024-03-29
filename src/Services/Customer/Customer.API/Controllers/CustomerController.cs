@@ -19,6 +19,14 @@ namespace Customer.API.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet]
+        [Route("getallcustomers")]
+        public async Task<ActionResult<List<CustomerModel>>> GetAllCustomers()
+        {
+            var query = new GetAllCustomersQuery();
+            return await _mediator.Send(query);
+            
+        }
 
         [HttpGet]
         [Route("GetCustomerById/{id}")]

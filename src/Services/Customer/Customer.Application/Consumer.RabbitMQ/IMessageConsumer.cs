@@ -7,6 +7,6 @@ namespace Customer.Application.Consumer.RabbitMQ
 {
     public interface IMessageConsumer
     {
-        Task<bool> Test();
+        Task<bool> ConsumeMesg();
     }
 }

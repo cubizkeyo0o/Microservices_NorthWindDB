@@ -2,6 +2,7 @@
 using System.Net.Mail;
 using Microsoft.Extensions.Options;
 using MimeKit;
+using Org.BouncyCastle.Asn1.Pkcs;
 
 namespace Customer.Application.Emails
 {
@@ -20,8 +21,8 @@ namespace Customer.Application.Emails
 
             mesgmail.From = new MailAddress(_mailsettings.SenderEmail);
             mesgmail.To.Add(new MailAddress(message.ReceiverEmail));
-            mesgmail.Subject = message.Title;
-            mesgmail.Body = message.Body;
+            mesgmail.Subject = message.Title.Trim();
+            mesgmail.Body = message.Body.Trim();
 
             using (SmtpClient smtpClient = new SmtpClient(_mailsettings.Server, _mailsettings.Port))
             {

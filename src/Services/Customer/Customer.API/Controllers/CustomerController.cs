@@ -40,7 +40,7 @@ namespace Customer.API.Controllers
         [Route("sendmail")]
         public async Task<ActionResult<string>> SendMail()
         {
-            var checkSendMail = await _messageConsumer.Test();
+            var checkSendMail = await _messageConsumer.ConsumeMesg();
             if(checkSendMail != true)
             {
                 Console.WriteLine("gửi mail thất bại");

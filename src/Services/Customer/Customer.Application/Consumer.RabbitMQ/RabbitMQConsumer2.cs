@@ -79,7 +79,7 @@ namespace Customer.Application.Consumer.RabbitMQ
             return emailMessage;
         }
 
-        public async Task<bool> Test()
+        public async Task<bool> ConsumeMesg()
         {
             Console.WriteLine(" [*] Waiting for messages.");
 

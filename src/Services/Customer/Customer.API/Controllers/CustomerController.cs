@@ -2,6 +2,7 @@
 using Customer.Application.Queries;
 using Customer.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Customer.API.Controllers
@@ -19,6 +20,7 @@ namespace Customer.API.Controllers
             _mediator = mediator;
         }
 
+
         [HttpGet]
         [Route("getallcustomers")]
         public async Task<ActionResult<List<CustomerModel>>> GetAllCustomers()
@@ -30,6 +32,7 @@ namespace Customer.API.Controllers
 
         [HttpGet]
         [Route("GetCustomerById/{id}")]
+        [Authorize(Policy = "Admin")]
         public async Task<ActionResult<CustomerModel>> GetCustomerById(string id)
         {
             var query = new GetCustomerByIdQuery(id);

@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "GetCustomerApi";
+}
+@model IDictionary<string, string>
+@using Microsoft.AspNetCore.Authentication
+
+<h1>@ViewData["Title"]</h1>
+
+<h2>Claims</h2>
+
+<dl>
+    @foreach (var claim in User.Claims)
+    {
+        <dt>@claim.Type</dt>
+        <dd>@claim.Value</dd>
+    }
+</dl>
+
+<h2>Properties</h2>
+<dl>
+    @foreach (var pro in Model)
+    {
+        <dt>@pro.Key</dt>
+        <dd>@pro.Value</dd>
+    }
+</dl>
+
+
+
+
+

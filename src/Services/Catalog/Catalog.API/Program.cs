@@ -9,6 +9,7 @@ using Catalog.API.GrpcService;
 using MediatR;
 using Catalog.Domain.Entities;
 using System.Text.Json.Serialization;
+using Microsoft.OpenApi.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,13 +37,21 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblies(typeof(GetProductGrpcHandle).Assembly);
 });
 builder.Services.AddGrpc();
-
+builder.Services.AddSwaggerGen(stetupaction =>
+{
+    stetupaction.SwaggerDoc("OrganizationOpenApiSpecification", new OpenApiInfo
+    {
+        Title = "OrganizationAPI",
+        Version = "1.0.0",
+    });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-   
+   app.UseSwagger();
+   app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

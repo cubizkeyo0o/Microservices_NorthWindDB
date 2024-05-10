@@ -8,6 +8,7 @@ using Customer.Infrastructure.Repositories;
 using Customer.Infrastructure.Data;
 using Customer.Application.Handlers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,20 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblies(typeof(GetCustomerByIdHandler).Assembly);
 });
 builder.Services.AddDbContext<CustomerContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
+//-----------Authen & Atuthor-----------------------
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = "bearer";
+    options.DefaultChallengeScheme = "bearer";
+}).AddJwtBearer("bearer", options =>
+{
+    options.Authority = "https://localhost:5001";
+    options.TokenValidationParameters.ValidateAudience = true;
+});
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+});
 
 
 //config masstransit.rabbitmq 
@@ -57,6 +72,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
